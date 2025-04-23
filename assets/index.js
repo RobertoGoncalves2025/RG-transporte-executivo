@@ -18,14 +18,14 @@
             if(keyValue == 0) {
 
                 //Atualizando url navegador ao iniciar site ou atualizar página
-                if(pathURL == "/testefiles/") {
+                if(pathURL == "/RG-transporte-executivo/") {
                     const homeUrl = `${window.location.pathname}home`;
                     const newState = {page: 'home'};
                     const newTitle = 'home';
                     window.history.pushState(newState, newTitle, homeUrl);
                     console.log("Site foi atualizado com url padrão!!!")
                 } else {
-                    const homeUrl = "/testefiles/home";
+                    const homeUrl = "/RG-transporte-executivo/home";
                     const newState = {page: 'home'};
                     const newTitle = 'home';
                     window.history.pushState(newState, newTitle, homeUrl);
@@ -725,7 +725,7 @@
 
                     //Iniciando roteador de URL
                     let keyValue = 1;
-                    let urlID = `/testefiles/${nameID}`;
+                    let urlID = `/RG-transporte-executivo/${nameID}`;
                     const statusURL = await roteadorURL(keyValue, urlID);
                     console.log(statusURL);
 
@@ -790,7 +790,7 @@
 
                             //Iniciando roteador de URL
                             let keyValue = 1;
-                            let urlID = `/testefiles/${nameID}`;
+                            let urlID = `/RG-transporte-executivo/${nameID}`;
                             const statusURL = await roteadorURL(keyValue, urlID);
                             console.log(statusURL);
 
@@ -844,7 +844,7 @@
 
                             //Iniciando roteador de URL
                             let keyValue = 1;
-                            let urlID = `/testefiles/${nameID}`;
+                            let urlID = `/RG-transporte-executivo/${nameID}`;
                             const statusURL = await roteadorURL(keyValue, urlID);
                             console.log(statusURL);
 
@@ -898,7 +898,7 @@
 
                             //Iniciando roteador de URL
                             let keyValue = 1;
-                            let urlID = `/testefiles/${nameID}`;
+                            let urlID = `/RG-transporte-executivo/${nameID}`;
                             const statusURL = await roteadorURL(keyValue, urlID);
                             console.log(statusURL);
 
@@ -970,7 +970,7 @@
 
                             //Iniciando roteador de URL
                             let keyValue = 1;
-                            let urlID = `/testefiles/${nameID}`;
+                            let urlID = `/RG-transporte-executivo/${nameID}`;
                             const statusURL = await roteadorURL(keyValue, urlID);
                             console.log(statusURL);
 
@@ -1037,7 +1037,7 @@
 
                     //Iniciando roteador de URL
                     let keyValue = 1;
-                    let urlID = `/testefiles/${nameID}`;
+                    let urlID = `/RG-transporte-executivo/${nameID}`;
                     const statusURL = await roteadorURL(keyValue, urlID);
                     console.log(statusURL);
 
@@ -1097,7 +1097,7 @@
 
                     //Iniciando roteador de URL
                     let keyValue = 1;
-                    let urlID = `/testefiles/${nameID}`;
+                    let urlID = `/RG-transporte-executivo/${nameID}`;
                     const statusURL = await roteadorURL(keyValue, urlID);
                     console.log(statusURL);
 
@@ -1157,7 +1157,7 @@
 
                     //Iniciando roteador de URL
                     let keyValue = 1;
-                    let urlID = `/testefiles/${nameID}`;
+                    let urlID = `/RG-transporte-executivo/${nameID}`;
                     const statusURL = await roteadorURL(keyValue, urlID);
                     console.log(statusURL);
 
@@ -1217,7 +1217,7 @@
 
                     //Iniciando roteador de URL
                     let keyValue = 1;
-                    let urlID = `/testefiles/${nameID}`;
+                    let urlID = `/RG-transporte-executivo/${nameID}`;
                     const statusURL = await roteadorURL(keyValue, urlID);
                     console.log(statusURL);
 
@@ -1277,7 +1277,7 @@
 
                     //Iniciando roteador de URL
                     let keyValue = 1;
-                    let urlID = `/testefiles/${nameID}`;
+                    let urlID = `/RG-transporte-executivo/${nameID}`;
                     const statusURL = await roteadorURL(keyValue, urlID);
                     console.log(statusURL);
 
@@ -1357,7 +1357,7 @@
 
                     //Iniciando roteador de URL
                     let keyValue = 1;
-                    let urlID = `/testefiles/${nameID}`;
+                    let urlID = `/RG-transporte-executivo/${nameID}`;
                     const statusURL = await roteadorURL(keyValue, urlID);
                     console.log(statusURL);
 
@@ -1419,7 +1419,7 @@
 
                     //Iniciando roteador de URL
                     let keyValue = 1;
-                    let urlID = `/testefiles/${nameID}`;
+                    let urlID = `/RG-transporte-executivo/${nameID}`;
                     const statusURL = await roteadorURL(keyValue, urlID);
                     console.log(statusURL);
 
@@ -1484,7 +1484,7 @@
 
                             //Iniciando roteador de URL
                             let keyValue = 1;
-                            let urlID = `/testefiles/${nameID}`;
+                            let urlID = `/RG-transporte-executivo/${nameID}`;
                             const statusURL = await roteadorURL(keyValue, urlID);
                             console.log(statusURL);
 
@@ -1538,7 +1538,7 @@
 
                             //Iniciando roteador de URL
                             let keyValue = 1;
-                            let urlID = `/testefiles/${nameID}`;
+                            let urlID = `/RG-transporte-executivo/${nameID}`;
                             const statusURL = await roteadorURL(keyValue, urlID);
                             console.log(statusURL);
 
@@ -1592,7 +1592,7 @@
 
                             //Iniciando roteador de URL
                             let keyValue = 1;
-                            let urlID = `/testefiles/${nameID}`;
+                            let urlID = `/RG-transporte-executivo/${nameID}`;
                             const statusURL = await roteadorURL(keyValue, urlID);
                             console.log(statusURL);
 
@@ -1664,7 +1664,7 @@
 
                             //Iniciando roteador de URL
                             let keyValue = 1;
-                            let urlID = `/testefiles/${nameID}`;
+                            let urlID = `/RG-transporte-executivo/${nameID}`;
                             const statusURL = await roteadorURL(keyValue, urlID);
                             console.log(statusURL);
 
@@ -1726,7 +1726,7 @@
 
                     //Iniciando roteador de URL
                     let keyValue = 1;
-                    let urlID = `/testefiles/${nameID}`;
+                    let urlID = `/RG-transporte-executivo/${nameID}`;
                     const statusURL = await roteadorURL(keyValue, urlID);
                     console.log(statusURL);
 
@@ -1781,7 +1781,7 @@
 
                     //Iniciando roteador de URL
                     let keyValue = 1;
-                    let urlID = `/testefiles/${nameID}`;
+                    let urlID = `/RG-transporte-executivo/${nameID}`;
                     const statusURL = await roteadorURL(keyValue, urlID);
                     console.log(statusURL);
 
@@ -1837,7 +1837,7 @@
 
                     //Iniciando roteador de URL
                     let keyValue = 1;
-                    let urlID = `/testefiles/${nameID}`;
+                    let urlID = `/RG-transporte-executivo/${nameID}`;
                     const statusURL = await roteadorURL(keyValue, urlID);
                     console.log(statusURL);
 
@@ -1894,7 +1894,7 @@
 
                     //Iniciando roteador de URL
                     let keyValue = 1;
-                    let urlID = `/testefiles/${nameID}`;
+                    let urlID = `/RG-transporte-executivo/${nameID}`;
                     const statusURL = await roteadorURL(keyValue, urlID);
                     console.log(statusURL);
 
@@ -1951,7 +1951,7 @@
 
                     //Iniciando roteador de URL
                     let keyValue = 1;
-                    let urlID = `/testefiles/${nameID}`;
+                    let urlID = `/RG-transporte-executivo/${nameID}`;
                     const statusURL = await roteadorURL(keyValue, urlID);
                     console.log(statusURL);
 
@@ -2026,7 +2026,7 @@
 
                     //Iniciando roteador de URL
                     let keyValue = 1;
-                    let urlID = `/testefiles/${nameID}`;
+                    let urlID = `/RG-transporte-executivo/${nameID}`;
                     const statusURL = await roteadorURL(keyValue, urlID);
                     console.log(statusURL);
 
@@ -2102,7 +2102,7 @@
 
                     //Iniciando roteador de URL
                     let keyValue = 1;
-                    let urlID = `/testefiles/${nameID}`;
+                    let urlID = `/RG-transporte-executivo/${nameID}`;
                     const statusURL = await roteadorURL(keyValue, urlID);
                     console.log(statusURL);
 
@@ -2158,7 +2158,7 @@
 
                     //Iniciando roteador de URL
                     let keyValue = 1;
-                    let urlID = `/testefiles/${nameID}`;
+                    let urlID = `/RG-transporte-executivo/${nameID}`;
                     const statusURL = await roteadorURL(keyValue, urlID);
                     console.log(statusURL);
 
@@ -2214,7 +2214,7 @@
 
                     //Iniciando roteador de URL
                     let keyValue = 1;
-                    let urlID = `/testefiles/${nameID}`;
+                    let urlID = `/RG-transporte-executivo/${nameID}`;
                     const statusURL = await roteadorURL(keyValue, urlID);
                     console.log(statusURL);
 
@@ -2288,7 +2288,7 @@
 
                     //Iniciando roteador de URL
                     let keyValue = 1;
-                    let urlID = `/testefiles/${nameID}`;
+                    let urlID = `/RG-transporte-executivo/${nameID}`;
                     const statusURL = await roteadorURL(keyValue, urlID);
                     console.log(statusURL);
 
@@ -2354,7 +2354,7 @@
 
                     //Iniciando roteador de URL
                     let keyValue = 1;
-                    let urlID = `/testefiles/${nameID}`;
+                    let urlID = `/RG-transporte-executivo/${nameID}`;
                     const statusURL = await roteadorURL(keyValue, urlID);
                     console.log(statusURL);
 
@@ -2419,7 +2419,7 @@
 
                             //Iniciando roteador de URL
                             let keyValue = 1;
-                            let urlID = `/testefiles/${nameID}`;
+                            let urlID = `/RG-transporte-executivo/${nameID}`;
                             const statusURL = await roteadorURL(keyValue, urlID);
                             console.log(statusURL);
 
@@ -2473,7 +2473,7 @@
 
                             //Iniciando roteador de URL
                             let keyValue = 1;
-                            let urlID = `/testefiles/${nameID}`;
+                            let urlID = `/RG-transporte-executivo/${nameID}`;
                             const statusURL = await roteadorURL(keyValue, urlID);
                             console.log(statusURL);
 
@@ -2527,7 +2527,7 @@
 
                             //Iniciando roteador de URL
                             let keyValue = 1;
-                            let urlID = `/testefiles/${nameID}`;
+                            let urlID = `/RG-transporte-executivo/${nameID}`;
                             const statusURL = await roteadorURL(keyValue, urlID);
                             console.log(statusURL);
 
@@ -2599,7 +2599,7 @@
 
                             //Iniciando roteador de URL
                             let keyValue = 1;
-                            let urlID = `/testefiles/${nameID}`;
+                            let urlID = `/RG-transporte-executivo/${nameID}`;
                             const statusURL = await roteadorURL(keyValue, urlID);
                             console.log(statusURL);
 
@@ -2661,7 +2661,7 @@
 
                     //Iniciando roteador de URL
                     let keyValue = 1;
-                    let urlID = `/testefiles/${nameID}`;
+                    let urlID = `/RG-transporte-executivo/${nameID}`;
                     const statusURL = await roteadorURL(keyValue, urlID);
                     console.log(statusURL);
 
@@ -2716,7 +2716,7 @@
 
                     //Iniciando roteador de URL
                     let keyValue = 1;
-                    let urlID = `/testefiles/${nameID}`;
+                    let urlID = `/RG-transporte-executivo/${nameID}`;
                     const statusURL = await roteadorURL(keyValue, urlID);
                     console.log(statusURL);
 
@@ -2771,7 +2771,7 @@
 
                     //Iniciando roteador de URL
                     let keyValue = 1;
-                    let urlID = `/testefiles/${nameID}`;
+                    let urlID = `/RG-transporte-executivo/${nameID}`;
                     const statusURL = await roteadorURL(keyValue, urlID);
                     console.log(statusURL);
 
@@ -2826,7 +2826,7 @@
 
                     //Iniciando roteador de URL
                     let keyValue = 1;
-                    let urlID = `/testefiles/${nameID}`;
+                    let urlID = `/RG-transporte-executivo/${nameID}`;
                     const statusURL = await roteadorURL(keyValue, urlID);
                     console.log(statusURL);
 
@@ -2881,7 +2881,7 @@
 
                     //Iniciando roteador de URL
                     let keyValue = 1;
-                    let urlID = `/testefiles/${nameID}`;
+                    let urlID = `/RG-transporte-executivo/${nameID}`;
                     const statusURL = await roteadorURL(keyValue, urlID);
                     console.log(statusURL);
 
@@ -2954,7 +2954,7 @@
 
                     //Iniciando roteador de URL
                     let keyValue = 1;
-                    let urlID = `/testefiles/${nameID}`;
+                    let urlID = `/RG-transporte-executivo/${nameID}`;
                     const statusURL = await roteadorURL(keyValue, urlID);
                     console.log(statusURL);
 
@@ -3009,7 +3009,7 @@
 
                     //Iniciando roteador de URL
                     let keyValue = 1;
-                    let urlID = `/testefiles/${nameID}`;
+                    let urlID = `/RG-transporte-executivo/${nameID}`;
                     const statusURL = await roteadorURL(keyValue, urlID);
                     console.log(statusURL);
 
