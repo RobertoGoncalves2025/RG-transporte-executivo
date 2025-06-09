@@ -1,16 +1,91 @@
-<!-- Estrutura Inicial da Página-->
+<!-- Estrutura Inicial da Página -->
+<!-- Última atualização em: 09/06/2025 as 09:22 -->
+<!-- Último Deploy: 09/06/2025 as 09:22 -->
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
 
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-531MQV1SJM"></script>
+        <!-- Local Environment Test sessionStorage -->
         <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
 
-            gtag('config', 'G-531MQV1SJM');
+            //Legenda statusHome
+            //false - Carregamento inicial
+            //true - Operação interna de páginas
+            sessionStorage.setItem("statusHome", "false");
+
+            //Legenda proEnvironment
+            // -1 live server
+            // 0 /testefiles/
+            // 1 /rg-transporte-executivo/
+            const proEnvironment = 1;
+
+            //Legenda localEnvironment
+            // 0 ambiente de testes
+            // 1 ambiente de produção
+            const localEnvironment = 1
+            const cookieADM = "GA_EXCLUDE_ADM";
+            const tipoADM = typeof cookieADM;
+            let ADMstatus = null;
+            const arrayCookies = document.cookie.split(';'); //Array separador
+            const lenCookies = arrayCookies.length; //Quantidade
+
+            for (let i = 0; i < lenCookies; i++) {
+                const partsCookies = arrayCookies[i].split('='); //Separa valores
+                const tipoParts = typeof partsCookies[0]; //Verifica o tipo valor
+                const statusFindout = (cookieADM === partsCookies[0].trim())
+                if (statusFindout === true) {
+                    ADMstatus = partsCookies[1].trim();
+                }
+            }
+            sessionStorage.setItem("proEnvironment", proEnvironment);
+            sessionStorage.setItem("localEnvironment", localEnvironment);
+            sessionStorage.setItem("ADMstatus", ADMstatus);
+            
+        </script>
+
+        <!-- Session Storage Verification -->
+        <script>
+            const islocalEnvironment = sessionStorage.getItem('localEnvironment')
+            const statusADM = sessionStorage.getItem('ADMstatus')
+            const intlocalEnvironment = parseInt(islocalEnvironment)
+            const resultInt = (intlocalEnvironment === 1)
+            const resultADM = (statusADM === 'true');
+            console.log(resultInt, resultADM);
+
+            if (resultInt === true && resultADM === false) {
+                
+                // Tag GA4
+                const ga4MeasurementId = 'G-G3C439TK33';
+
+                // Head Element GA4
+                const script1 = document.createElement("script")
+                script1.async = true
+                script1.src = `https://www.googletagmanager.com/gtag/js?id=${ga4MeasurementId}`
+                document.head.appendChild(script1)
+
+                // Data Layer GA4
+                const script2 = document.createElement("script")
+                script2.textContent = `
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+
+                    gtag('config', '${ga4MeasurementId}')
+                `;
+                document.head.appendChild(script2);
+
+                // Google Tag Manager GTM
+                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                })(window,document,'script','dataLayer','GTM-57JHV98X');
+
+                console.log("Index.html: GA4 e GTM habilitados para essa sessão!");
+            } else {
+                console.log("Index.html: Ambiente de testes ou ADM em produção, não habilitar TAGS Google!")
+            }
         </script>
 
         <meta charset="UTF-8">
@@ -19,6 +94,29 @@
             content="width=device-width, initial-scale=1.0">
 
         <title>Transporte Executivo em Curitiba | Roberto Gonçalves - Motorista Executivo</title>
+
+        <script>
+            const currentEnvironment = sessionStorage.getItem("proEnvironment")
+            const intproEnvironment = parseInt(currentEnvironment)
+            let baseURL = null;
+            if (intproEnvironment === -1) {
+                baseURL = "/";
+            } else if (intproEnvironment === 0) {
+                baseURL = "/testefiles/";
+            } else if (intproEnvironment === 1) {
+                baseURL = "/rg-transporte-executivo/";
+            }
+
+            let baseTag = document.createElement('base');
+            baseTag.href = baseURL;
+            document.head.prepend(baseTag);
+            console.log(`Base href definido como: ${baseURL}`)
+            
+            // Montando Domínio
+            sessionStorage.setItem("currentDomain", `${window.location.origin}${baseURL}`)
+            console.log("Current Domain: ", sessionStorage.getItem("currentDomain"))
+            
+        </script>
 
         <meta
             name="description"
@@ -36,7 +134,7 @@
 
         <link rel="stylesheet"
             type="text/css"
-            href="assets/index.css">
+            href="assets/02-CSS/00-Index/0-index.css">
 
         <link rel="preconnect" href="https://cdnjs.cloudflare.com">
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
@@ -44,6 +142,33 @@
     </head>
 
     <body>
+
+        <!-- Iframe GTM -->
+        <script>
+            const islocalEnvironment2 = sessionStorage.getItem('localEnvironment')
+            const statusADM2 = sessionStorage.getItem('ADMstatus')
+            const intlocalEnvironment2 = parseInt(islocalEnvironment2)
+            const resultInt2 = (intlocalEnvironment2 === 1)
+            const resultADM2 = (statusADM2 === 'true');
+
+            if (resultInt2 === true && resultADM2 === false) {
+
+                // Google Tag Manager (noscript)
+                const noScript = document.createElement("noscript")
+                const eliframe = document.createElement("iframe")
+                eliframe.src = "https://www.googletagmanager.com/ns.html?id=GTM-57JHV98X"
+                eliframe.height = "0"
+                eliframe.width = "0"
+                eliframe.style.display = "none"
+                eliframe.style.visibility = "hidden"
+                noScript.appendChild(eliframe)
+                document.body.prepend(noScript)
+
+                console.log("Index.html: Iframe GTM ativo!!!")
+            } else {
+                console.log("Index.html: Iframe noscript GTM desativado!")
+            }
+        </script>
 
         <!-- Cabeçalho do Site Botões de Interação -->
         <header>
@@ -60,114 +185,11 @@
                 </img>
             </a>
 
-            <!-- Tela de carregamento -->
-            <div
-                class="loading-screen">
-                <h3
-                    id="loading-text">
-                    Preparando sua viagem...
-                </h3>
-            </div>
-
             <!-- Botão para abrir menu oculto em telas menores -->
             <button 
                 class="open-menu">
                 &#9776;
             </button>
-
-            <!-- Menu Oculto substituto da navbar em telas menores -->
-            <div
-                class="menu-oculto">
-                <button 
-                    class="close-menu">
-                    X
-                </button>
-
-                <a  
-                    id="menu-oculto-home"
-                    class="menu-oculto-text"
-                    target="bloco_central"
-                    style="color: #d2aa70"
-                    data-link="home"
-                    role="button"
-                    title="Transporte Executivo">
-                    HOME
-                </a>
-
-                <a 
-                    id="menu-oculto-trans"
-                    class="menu-oculto-text" 
-                    target="bloco_central"
-                    style="color: white"
-                    data-link="transfer-aeroporto"
-                    role="button"
-                    title="Transfer Aeroporto">
-                    Transfer Aeroporto
-                </a>
-
-                <a 
-                    id="menu-oculto-viagens"
-                    class="menu-oculto-text"
-                    target="bloco_central"
-                    style="color: white"
-                    data-link="viagens-executivas"
-                    role="button"
-                    title="Viagens Executivas">
-                    Viagens Executivas
-                </a>
-
-                <a 
-                    id="menu-oculto-pacotes"
-                    class="menu-oculto-text"
-                    target="bloco_central"
-                    style="color: white"
-                    data-link="pacotes-turisticos"
-                    role="button"
-                    title="Pacotes Turísticos">
-                    Pacotes Turísticos no Brasil
-                </a>
-
-                <a 
-                    id="menu-oculto-passagens"
-                    class="menu-oculto-text"
-                    target="bloco_central"
-                    style="color: white"
-                    data-link="passagens-aereas"
-                    role="button"
-                    title="Passagens Aéreas">
-                    Passagens Aéreas
-                </a>
-
-                <a 
-                    id="menu-oculto-sobre"
-                    class="menu-oculto-text"
-                    target="bloco_central"
-                    style="color: white"
-                    data-link="sobre"
-                    role="button"
-                    title="Roberto Gonçalves">
-                    SOBRE MIM
-                </a>
-
-                <a 
-                    id="menu-oculto-agen"
-                    class="menu-oculto-text"
-                    target="bloco_central"
-                    style="color: white"
-                    data-link="agendamento"
-                    role="button"
-                    title="Agendamento Transporte Executivo">
-                    AGENDAMENTO
-                </a>
-
-                <h1
-                    id="loading-text"
-                    class="menu-oculto-loading"
-                    style="display: none;">
-                    Preparando sua viagem...
-                </h1>
-
-            </div>
 
             <!-- Navbar principal, menu de interação -->
             <div 
@@ -269,7 +291,8 @@
 
             <!-- Botão Principal de Ação no Cabeçalho -->
             <button 
-                class="header-btn-ação">
+                class="header-btn-ação"
+                data-link="header-ação">
                 <i class="fa">
                     &#xf232;
                 </i>
@@ -277,17 +300,127 @@
             </button>
         </header>
 
+        <!-- Div Loading durante processamentos -->
+        <section class="section-screen-loading">
+
+            <!-- Tela de carregamento -->
+            <div
+                class="loading-screen">
+                <h3
+                    id="loading-text">
+                    Preparando sua viagem...
+                </h3>
+            </div>
+        </section>
+
+        <!-- Div Menu Oculto em Telas Menores -->
+        <section class="section-menu-oculto">
+
+            <!-- Menu Oculto substituto da navbar em telas menores -->
+            <div
+                class="menu-oculto">
+                <button 
+                    class="close-menu">
+                    X
+                </button>
+
+                <a  
+                    id="menu-oculto-home"
+                    class="menu-oculto-text"
+                    target="bloco_central"
+                    style="color: #d2aa70"
+                    data-link="home"
+                    role="button"
+                    title="Transporte Executivo">
+                    HOME
+                </a>
+
+                <a 
+                    id="menu-oculto-trans"
+                    class="menu-oculto-text" 
+                    target="bloco_central"
+                    style="color: white"
+                    data-link="transfer-aeroporto"
+                    role="button"
+                    title="Transfer Aeroporto">
+                    Transfer Aeroporto
+                </a>
+
+                <a 
+                    id="menu-oculto-viagens"
+                    class="menu-oculto-text"
+                    target="bloco_central"
+                    style="color: white"
+                    data-link="viagens-executivas"
+                    role="button"
+                    title="Viagens Executivas">
+                    Viagens Executivas
+                </a>
+
+                <a 
+                    id="menu-oculto-pacotes"
+                    class="menu-oculto-text"
+                    target="bloco_central"
+                    style="color: white"
+                    data-link="pacotes-turisticos"
+                    role="button"
+                    title="Pacotes Turísticos">
+                    Pacotes Turísticos no Brasil
+                </a>
+
+                <a 
+                    id="menu-oculto-passagens"
+                    class="menu-oculto-text"
+                    target="bloco_central"
+                    style="color: white"
+                    data-link="passagens-aereas"
+                    role="button"
+                    title="Passagens Aéreas">
+                    Passagens Aéreas
+                </a>
+
+                <a 
+                    id="menu-oculto-sobre"
+                    class="menu-oculto-text"
+                    target="bloco_central"
+                    style="color: white"
+                    data-link="sobre"
+                    role="button"
+                    title="Roberto Gonçalves">
+                    SOBRE MIM
+                </a>
+
+                <a 
+                    id="menu-oculto-agen"
+                    class="menu-oculto-text"
+                    target="bloco_central"
+                    style="color: white"
+                    data-link="agendamento"
+                    role="button"
+                    title="Agendamento Transporte Executivo">
+                    AGENDAMENTO
+                </a>
+
+                <h1
+                    id="loading-text"
+                    class="menu-oculto-loading"
+                    style="display: none;">
+                    Preparando sua viagem...
+                </h1>
+
+            </div>
+
+        </section>
 
         <!-- Frame de Exibição dos Conteúdos -->
         <main>
             <iframe
-                class="iframe"
+                class="main-iframe"
                 scrolling="no"
                 name="bloco_central"
-                src="assets/home.html">
+                src="assets/01-HTML/home.html">
             </iframe>
         </main>
-
 
         <!-- Rodapé da página-->
         <footer>
@@ -431,12 +564,12 @@
                         <h3 class="ft-container-01-h1">Contato</h3>
                         
                         <a
-                            href="https://tinyurl.com/veckfe3p"
-                            target="_blank"
+                            class="icon-zap-link"
+                            data-link="icon-zap-link"
                             title="Contato Transporte Executivo">
                             <i 
                                 class="fa">
-                                &#xf232;
+                                &#xf232; 
                             </i>
                         </a>
 
@@ -463,20 +596,18 @@
                 </p>
 
                 <p class="ft-container-02-p">
-                    Desenvolvido por Ewerton Santos 
+                    Desenvolvido por Ewerton Santos
+                    <span title="Versão">(v1.0.1)</span>
                     <i class="fa" title="@ewer.web.ton">&#xf16d;</i>  
                 </p>
 
             </div>
         </footer>
 
-
         <!-- JavaScript Automações-->
         <script 
             type="module"
-            src="assets/index.js?v=1.0.2">
+            SRC="assets/03-JAVASCRIPT/0-index.js?v=1.0.0">
         </script>
-        
-
     </body>
 </html>
