@@ -10,8 +10,11 @@ export async function alteraAlturaIframe() {
                 const contentHeight = iframeDoc.documentElement.scrollHeight;
                 const contentHeight2 = iframe.contentWindow.document.body.clientHeight;
                 iframe.style.height = contentHeight2 + "px";
-                console.log(contentHeight)
-                console.log(contentHeight2)
+                
+                if(sessionStorage.getItem("statusConsole") === 'true') {
+                    console.log(contentHeight)
+                    console.log(contentHeight2)
+                }
             }
         }, 750)
     })
@@ -23,7 +26,9 @@ export async function atualizaIframe(path) {
         let iframe = document.querySelector(".main-iframe");
         iframe.src = path; 
         if (iframe) {
-            console.log(iframe.src, "Novo Dom")
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log(iframe.src, "Novo Dom")
+            }
             iframe.onload = function(){
                 resolve(iframe);
             }

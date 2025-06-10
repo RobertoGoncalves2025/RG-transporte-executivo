@@ -21,13 +21,17 @@ export async function roteadorURL(keyValue, pathURL) {
                     const newState = {page: 'home'};
                     const newTitle = 'home';
                     window.history.pushState(newState, newTitle, homeUrl);
-                    console.log("Site foi atualizado com url padrão!!!")
+                    if(sessionStorage.getItem("statusConsole") === 'true') {
+                        console.log("Site foi atualizado com url padrão!!!")
+                    }
                 } else {
                     const homeUrl = "/testefiles/home";
                     const newState = {page: 'home'};
                     const newTitle = 'home';
                     window.history.pushState(newState, newTitle, homeUrl);
-                    console.log("Site foi atualizado com url diferente do inicial!")
+                    if(sessionStorage.getItem("statusConsole") === 'true') {
+                        console.log("Site foi atualizado com url diferente do inicial!")
+                    }
                 }
 
             } else if (intproEnvironment === 1) {
@@ -38,17 +42,19 @@ export async function roteadorURL(keyValue, pathURL) {
                     const newState = {page: 'home'};
                     const newTitle = 'home';
                     window.history.pushState(newState, newTitle, homeUrl);
-                    console.log("Site foi atualizado com url padrão!!!")
+                    if(sessionStorage.getItem("statusConsole") === 'true') {
+                        console.log("Site foi atualizado com url padrão!!!")
+                    }
                 } else {
                     const homeUrl = "/RG-transporte-executivo/home";
                     const newState = {page: 'home'};
                     const newTitle = 'home';
                     window.history.pushState(newState, newTitle, homeUrl);
-                    console.log("Site foi atualizado com url diferente do inicial!")
+                    if(sessionStorage.getItem("statusConsole") === 'true') {
+                        console.log("Site foi atualizado com url diferente do inicial!")
+                    }
                 }
             }
-
-            
 
         } else if(keyValue == 1) {
             const targetUrl = pathURL;
@@ -57,11 +63,15 @@ export async function roteadorURL(keyValue, pathURL) {
             const newState = {page: lastPart};
             const newTitle = lastPart;
             window.history.pushState(newState, newTitle, targetUrl);
-            console.log("Operação para páginas internas!!!");
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log("Operação para páginas internas!!!");
+            }
         }
 
-        console.log(keyValue, "Key Value");
-        console.log(window.history.state)
+        if(sessionStorage.getItem("statusConsole") === 'true') {
+            console.log(keyValue, "Key Value");
+            console.log(window.history.state)
+        }
         let statusURL = "URL foi atualizada";
         resolve(statusURL);
     })

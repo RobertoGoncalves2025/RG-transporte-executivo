@@ -9,9 +9,11 @@ export async function turnOFFDrop() {
     return new Promise(async (resolve) => {
         //console.log("Escondendo Drop Down Menu")
         const divDropMenu = document.querySelector(".dropdown-content")
-        console.log(divDropMenu);
         divDropMenu.style.opacity = 0;
         divDropMenu.style.visibility = "hidden";
+        if(sessionStorage.getItem("statusConsole") === 'true') {
+            console.log(divDropMenu);
+        }
         resolve("Drop OFF Stats")
     })
 }
@@ -64,9 +66,6 @@ export async function goTochat(keyID) {
     })
 }
 
-// Função para declarar botões aba HOME
-// Continuando, padronização fluxo para ativar os botões da aba home...
-
 // Função principal para operaçao páginas internas!
 export async function startsOp(nameID, X, varsArray) {
     return new Promise(async (resolve) => {
@@ -74,13 +73,17 @@ export async function startsOp(nameID, X, varsArray) {
         // Ativa tela temporaria de carregamento...
         if (X === 0 || X === 13 || X === 20) {
             const statusLoading = await showLoadingScreen(nameID);
-            console.log(statusLoading, nameID);
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log(statusLoading, nameID);
+            }
         }
 
         // Alterando propriedades Menu Oculto...
         if(X == 5) {
             const statusLoading = await changeCSSOculto(varsArray);
-            console.log(statusLoading, nameID);
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log(statusLoading, nameID);
+            }
         }
 
         sessionStorage.setItem("nameID", nameID);
@@ -89,49 +92,65 @@ export async function startsOp(nameID, X, varsArray) {
         // Atualizando propriedades CSS HOME
         if (nameID === "home") {
             const statusCSS = await abaHome(varsArray);
-            console.log(statusCSS, nameID);
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log(statusCSS, nameID);
+            }
         }
 
         // Atualizando propriedades CSS SOBRE
         if (nameID === "sobre") {
             const statusCSS = await abaSobre(varsArray);
-            console.log(statusCSS, nameID);
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log(statusCSS, nameID);
+            }
         }
 
         // Atualizando propriedades CSS AGENDAMENTO
         if (nameID === "agendamento") {
             const statusCSS = await abaAgen(varsArray);
-            console.log(statusCSS, nameID);
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log(statusCSS, nameID);
+            }
         }
 
         // Atualizando Propriedades CSS TRANSFER AEROPORTO
         if (nameID === "transfer-aeroporto") {
             const statusCSS = await abaTrans(varsArray);
-            console.log(statusCSS, nameID);
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log(statusCSS, nameID);
+            }
         }
 
         // Atualizando Propriedades CSS VIAGENS EXECUTIVAS
         if (nameID === "viagens-executivas") {
             const statusCSS = await abaViag(varsArray);
-            console.log(statusCSS, nameID);
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log(statusCSS, nameID);
+            }
         }
 
         // Atualizando Propriedades CSS PACOTES TURÍSTICOS
         if (nameID === "pacotes-turisticos") {
             const statusCSS = await abaPaco(varsArray);
-            console.log(statusCSS, nameID);
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log(statusCSS, nameID);
+            }
         }
 
         // Atualizando Propriedades CSS PASSAGENS AÉREAS
         if (nameID === "passagens-aereas") {
             const statusCSS = await abaPass(varsArray);
-            console.log(statusCSS, nameID);
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log(statusCSS, nameID);
+            }
         }
 
         // Atualizando Propriedades CSS PASSAGENS AÉREAS
         if (nameID === "politica") {
             const statusCSS = await abaPol(varsArray);
-            console.log(statusCSS, nameID);
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log(statusCSS, nameID);
+            }
         }
 
         //Condição Base href Environment
@@ -149,20 +168,26 @@ export async function startsOp(nameID, X, varsArray) {
         //Condição para roteamento de links - Live Server
         if(window.location.origin == "http://127.0.0.1:5500" || window.location.origin == "http://robertog") {
             history.pushState({ Page: nameID }, nameID, '');
-            console.log(window.history.state, "Internal Pages");
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log(window.history.state, "Internal Pages");
+            }
 
         //Condição para roteamento de links - Servidor    
         } else {
             let urlID = `${baseURL}${nameID}`;
             const statusURL = await roteadorURL(1, urlID);
-            console.log(statusURL);
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log(statusURL);
+            }
         }
 
         //Caminho para atualização DOM
         let SRCiframe = `${baseURL}assets/01-HTML/${nameID}.html`;
         if (SRCiframe) {
             const statusDOM = await atualizaIframe(SRCiframe);
-            console.log(statusDOM, nameID);
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log(statusDOM, nameID);
+            }
             return 
         }
     })
@@ -172,89 +197,128 @@ export async function startsOp(nameID, X, varsArray) {
 export async function endsOp(nameID, X, varsArray, iframeDoc) {
     return new Promise(async (resolve) => {
 
-        console.log(`%cFinalizando Operação páginas internas após sinal DOM ${nameID}`, "text-decoration: underline")
+        if(sessionStorage.getItem("statusConsole") === 'true') {
+            console.log(`%cFinalizando Operação páginas internas após sinal DOM ${nameID}`, "text-decoration: underline")
+        }
 
         // Capturando Objetos Específicos
         if (nameID === "home") {
             let btnMainAction = iframeDoc.querySelector(".main-btn");
-            console.log(btnMainAction, nameID);
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log(btnMainAction, nameID);
+            }
             if (btnMainAction) {
                 btnMainAction.addEventListener('click', async function() {
                     //window.alert(`Botão AÇÃO ${nameID} Main foi acionado!`)
                     let name2ID = btnMainAction.dataset.link;
                     const statusOp = await goTochat(name2ID);
-                    console.log(statusOp)
+                    if(sessionStorage.getItem("statusConsole") === 'true') {
+                        console.log(statusOp)
+                    }
                 })
             }
 
             let btnAgenHAction = iframeDoc.querySelector(".sa-btn");
-            console.log(btnAgenHAction, nameID);
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log(btnAgenHAction, nameID);
+            }
             if (btnAgenHAction) {
                 btnAgenHAction.addEventListener('click', async function() {
                     //window.alert(`Botão AÇÃO ${nameID} Agendamento foi acionado!`)
                     let name2ID = btnAgenHAction.dataset.link;
                     const statusOp = await goTochat(name2ID);
-                    console.log(statusOp)
+                    if(sessionStorage.getItem("statusConsole") === 'true') {
+                        console.log(statusOp)
+                    }
                 })
             }
 
             // Evento Click Frame TRANSFER AEROPORTO - DEFAULT HOME
             let frameTransSer = iframeDoc.querySelector(".ps-container-frame-link-01");
-            console.log(frameTransSer, nameID);
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log(frameTransSer, nameID);
+            }
             if (frameTransSer) {
                 frameTransSer.addEventListener('click', async function() {
-                    console.clear();
-                    console.log(Date());
+                    
+                    if(sessionStorage.getItem("statusConsole") === 'true') {
+                        console.clear();
+                        console.log(Date());
+                    }
 
                     //Capturando data-link
                     let nameID = frameTransSer.dataset.link;
                     const statusOp = await startsOp(nameID, 20, varsArray)
-                    console.log(statusOp) // FIM
+                    if(sessionStorage.getItem("statusConsole") === 'true') {
+                        console.log(statusOp) // FIM
+                    }
                 })
             }
 
             // Evento Click Frame VIAGENS EXECUTIVAS - DEFAULT HOME
             let frameViagSer = iframeDoc.querySelector(".ps-container-frame-link-02")
-            console.log(frameViagSer, nameID);
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log(frameViagSer, nameID);
+            }
             if (frameViagSer) {
                 frameViagSer.addEventListener('click', async function() {
-                    console.clear();
-                    console.log(Date());
+                    
+                    if(sessionStorage.getItem("statusConsole") === 'true') {
+                        console.clear();
+                        console.log(Date());
+                    }
 
                     //Capturando data-link
                     let nameID = frameViagSer.dataset.link;
                     const statusOp = await startsOp(nameID, 20, varsArray)
-                    console.log(statusOp) // FIM
+                    if(sessionStorage.getItem("statusConsole") === 'true') {
+                        console.log(statusOp) // FIM
+                    }
                 })
             }
 
             // Evento Click Frame PACOTES TURÍSTICOS - DEFAULT HOME
             let framePacoSer = iframeDoc.querySelector(".ps-container-frame-link-03")
-            console.log(framePacoSer, nameID);
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log(framePacoSer, nameID);
+            }
             if (framePacoSer) {
                 framePacoSer.addEventListener('click', async function() {
-                    console.clear();
-                    console.log(Date());
+                    
+                    if(sessionStorage.getItem("statusConsole") === 'true') {
+                        console.clear();
+                        console.log(Date());
+                    }
 
                     //Capturando data-link
                     let nameID = framePacoSer.dataset.link;
                     const statusOp = await startsOp(nameID, 20, varsArray)
-                    console.log(statusOp) // FIM
+                    if(sessionStorage.getItem("statusConsole") === 'true') {
+                        console.log(statusOp) // FIM
+                    }
                 })
             }
 
             // Evento Click Frame PASSAGENS AÉREAS - DEFAULT HOME
             let framePassSer = iframeDoc.querySelector(".ps-container-frame-link-04")
-            console.log(framePassSer, nameID);
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log(framePassSer, nameID);
+            }
             if (framePassSer) {
                 framePassSer.addEventListener('click', async function() {
-                    console.clear();
-                    console.log(Date());
+                    
+                    if(sessionStorage.getItem("statusConsole") === 'true') {
+                        console.clear();
+                        console.log(Date());
+                    }
 
                     //Capturando data-link
                     let nameID = framePassSer.dataset.link;
                     const statusOp = await startsOp(nameID, 20, varsArray)
-                    console.log(statusOp) // FIM
+                    
+                    if(sessionStorage.getItem("statusConsole") === 'true') {
+                        console.log(statusOp) // FIM
+                    }
                 })
             }
         }
@@ -262,13 +326,17 @@ export async function endsOp(nameID, X, varsArray, iframeDoc) {
         // Capturando Objetos Específicos
         if (nameID === "sobre") {
             let btnSobreAction = iframeDoc.querySelector(".am-btn");
-            console.log(btnSobreAction, nameID);
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log(btnSobreAction, nameID);
+            }
             if (btnSobreAction) {
                 btnSobreAction.addEventListener('click', async function() {
                     //window.alert(`Botão AÇÃO ${nameID} foi acionado!`)
                     let name2ID = btnSobreAction.dataset.link;
                     const statusOp = await goTochat(name2ID);
-                    console.log(statusOp);
+                    if(sessionStorage.getItem("statusConsole") === 'true') {
+                        console.log(statusOp);
+                    }
                 })
             }
         }
@@ -276,13 +344,17 @@ export async function endsOp(nameID, X, varsArray, iframeDoc) {
         // Capturando Objetos Específicos
         if (nameID === "agendamento") {
             let btnAgenAction = iframeDoc.querySelector(".aba-sa-btn");
-            console.log(btnAgenAction, nameID);
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log(btnAgenAction, nameID);
+            }
             if (btnAgenAction) {
                 btnAgenAction.addEventListener('click', async function() {
                     //window.alert(`Botão AÇÃO ${nameID} foi acionado!`)
                     let name2ID = btnAgenAction.dataset.link;
                     const statusOp = await goTochat(name2ID);
-                    console.log(statusOp)
+                    if(sessionStorage.getItem("statusConsole") === 'true') {
+                        console.log(statusOp)
+                    }
                 })
             }
         }
@@ -290,13 +362,17 @@ export async function endsOp(nameID, X, varsArray, iframeDoc) {
         // Capturando Objetos Específicos
         if (nameID === "transfer-aeroporto") {
             let btnTransAction = iframeDoc.querySelector(".ta-btn")
-            console.log(btnTransAction, nameID);
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log(btnTransAction, nameID);
+            }
             if (btnTransAction) {
                 btnTransAction.addEventListener('click', async function() {
                     //window.alert(`Botão AÇÃO ${nameID} foi acionado!`)
                     let name2ID = btnTransAction.dataset.link;
                     const statusOp = await goTochat(name2ID);
-                    console.log(statusOp)
+                    if(sessionStorage.getItem("statusConsole") === 'true') {
+                        console.log(statusOp)
+                    }
                 })
             }
         }
@@ -304,13 +380,17 @@ export async function endsOp(nameID, X, varsArray, iframeDoc) {
         // Capturando Objetos Específicos
         if (nameID === "viagens-executivas") {
             let btnViagAction = iframeDoc.querySelector(".ve-btn")
-            console.log(btnViagAction, nameID);
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log(btnViagAction, nameID);
+            }
             if (btnViagAction) {
                 btnViagAction.addEventListener('click', async function() {
                     //window.alert(`Botão AÇÃO ${nameID} foi acionado!`)
                     let name2ID = btnViagAction.dataset.link;
                     const statusOp = await goTochat(name2ID);
-                    console.log(statusOp)
+                    if(sessionStorage.getItem("statusConsole") === 'true') {
+                        console.log(statusOp)
+                    }
                 })
             }
         }
@@ -318,35 +398,47 @@ export async function endsOp(nameID, X, varsArray, iframeDoc) {
         // Capturando Objetos Específicos
         if (nameID === "pacotes-turisticos") {
             let btnPaco01Action = iframeDoc.querySelector(".pt-btn-01")
-            console.log(btnPaco01Action, nameID);
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log(btnPaco01Action, nameID);
+            }
             if (btnPaco01Action) {
                 btnPaco01Action.addEventListener('click', async function() {
                     //window.alert(`Botão AÇÃO ${nameID} 01 foi acionado!`)
                     let name2ID = btnPaco01Action.dataset.link;
                     const statusOp = await goTochat(name2ID);
-                    console.log(statusOp)
+                    if(sessionStorage.getItem("statusConsole") === 'true') {
+                        console.log(statusOp)
+                    }
                 })
             }
 
             let btnPaco02Action = iframeDoc.querySelector(".pt-btn-02")
-            console.log(btnPaco02Action, nameID);
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log(btnPaco02Action, nameID);
+            }
             if (btnPaco02Action) {
                 btnPaco02Action.addEventListener('click', async function() {
                     //window.alert(`Botão AÇÃO ${nameID} 02 foi acionado!`)
                     let name2ID = btnPaco02Action.dataset.link;
                     const statusOp = await goTochat(name2ID);
-                    console.log(statusOp)
+                    if(sessionStorage.getItem("statusConsole") === 'true') {
+                        console.log(statusOp)
+                    }
                 })
             }
 
             let btnPaco03Action = iframeDoc.querySelector(".pt-btn-03")
-            console.log(btnPaco03Action, nameID);
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log(btnPaco03Action, nameID);
+            }
             if (btnPaco03Action) {
                 btnPaco03Action.addEventListener('click', async function() {
                     //window.alert(`Botão AÇÃO ${nameID} 03 foi acionado!`)
                     let name2ID = btnPaco03Action.dataset.link;
                     const statusOp = await goTochat(name2ID);
-                    console.log(statusOp)
+                    if(sessionStorage.getItem("statusConsole") === 'true') {
+                        console.log(statusOp)
+                    }
                 })
             }
         }
@@ -354,13 +446,17 @@ export async function endsOp(nameID, X, varsArray, iframeDoc) {
         // Capturando Objetos Específicos
         if (nameID === "passagens-aereas") {
             let btnPassAction = iframeDoc.querySelector(".pa-btn")
-            console.log(btnPassAction, nameID);
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log(btnPassAction, nameID);
+            }
             if (btnPassAction) {
                 btnPassAction.addEventListener('click', async function() {
                     //window.alert(`Botão AÇÃO ${nameID} foi acionado!`)
                     let name2ID = btnPassAction.dataset.link;
                     const statusOp = await goTochat(name2ID);
-                    console.log(statusOp)
+                    if(sessionStorage.getItem("statusConsole") === 'true') {
+                        console.log(statusOp)
+                    }
                 })
             }
         }
@@ -369,37 +465,53 @@ export async function endsOp(nameID, X, varsArray, iframeDoc) {
         const divDropMenu = document.querySelector(".dropdown-content")
         divDropMenu.style.opacity = "";
         divDropMenu.style.visibility = "";
-        console.log("Drop Ativo!")
+        if(sessionStorage.getItem("statusConsole") === 'true') {
+            console.log("Drop Ativo!")
+        }
 
         //Atualizando altura do iframe
         const statusAltura = await alteraAlturaIframe();
-        console.log(statusAltura, nameID);
+        if(sessionStorage.getItem("statusConsole") === 'true') {
+            console.log(statusAltura, nameID);
+        }
 
         //Encerrando Screen Loading...
         if(X == 0 || X == 13 || X == 20) {
             const statusOff = await offLoadingScreen(nameID);
-            console.log(statusOff, nameID);
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log(statusOff, nameID);
+            }
             if(X == 0) {
-                console.log(`Botão ${nameID} nav bar pronto!`);
+                if(sessionStorage.getItem("statusConsole") === 'true') {
+                    console.log(`Botão ${nameID} nav bar pronto!`);
+                }
             }
 
             if(X == 13) {
-                console.log(`Botão ${nameID} footer pronto!`)
+                if(sessionStorage.getItem("statusConsole") === 'true') {
+                    console.log(`Botão ${nameID} footer pronto!`)
+                }
             }
 
             if(X == 20) {
-                console.log(`Botão ${nameID} Frame pronto!`)
+                if(sessionStorage.getItem("statusConsole") === 'true') {
+                    console.log(`Botão ${nameID} Frame pronto!`)
+                }
             }
         }
 
         //Fechando Menu Oculto após carregamento!
         if(X == 5) {
             const statusOff = await closeHideMenu(varsArray, 800);
-            console.log(statusOff, nameID);
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log(statusOff, nameID);
+            }
 
             //Alterando propriedades Menu Oculto
             const statusEndOculto = await retornaCSSOculto(varsArray);
-            console.log(statusEndOculto, nameID);
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log(statusEndOculto, nameID);
+            }
         }
         resolve("FIM")
     })

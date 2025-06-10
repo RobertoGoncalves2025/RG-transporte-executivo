@@ -1,6 +1,6 @@
 <!-- Estrutura Inicial da Página -->
-<!-- Última atualização em: 09/06/2025 as 18:42 -->
-<!-- Último Deploy: 09/06/2025 as 18:42 -->
+<!-- Última atualização em: 10/06/2025 as 10:59 -->
+<!-- Último Deploy: 10/06/2025 as 10:59 -->
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -28,7 +28,12 @@
             //Legenda statusADM
             //false - ADM is not logged
             //true - ADM is logged
-            sessionStorage.setItem("ADMstatus", null)
+            sessionStorage.setItem("ADMstatus", null) //Always keep null
+
+            //Legenda statsConsole
+            //false - No messages in the console
+            //true - Print messages status in the console
+            sessionStorage.setItem("statusConsole", false)
 
         </script>
         
@@ -46,7 +51,9 @@
                 const statusFindout = (cookieADM === partsCookies[0].trim())
                 if (statusFindout === true) {
                     sessionStorage.setItem("ADMstatus", partsCookies[1].trim()); 
-                    console.log("ADM ATIVO COOKIE NAVEGADOR")
+                    if(sessionStorage.getItem("statusConsole") === 'true') {
+                        console.log("ADM ATIVO COOKIE NAVEGADOR")
+                    }
                 }
             }    
 
@@ -73,7 +80,9 @@
                 }
 
                 sessionStorage.setItem("ADMstatus", true);
-                console.log("MAGIC LINK ADM IS UP")
+                if(sessionStorage.getItem("statusConsole") === 'true') {
+                    console.log("MAGIC LINK ADM IS UP")
+                } 
             }
         </script>
 
@@ -81,12 +90,15 @@
         <script>
             const islocalEnvironment = sessionStorage.getItem('localEnvironment')
             const statusADM = sessionStorage.getItem('ADMstatus')
-            console.log(statusADM, "statsADM")
             const intlocalEnvironment = parseInt(islocalEnvironment)
             const resultInt = (intlocalEnvironment === 1)
             const resultADM = (statusADM === 'true');
-            console.log(resultInt, resultADM);
 
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log("Environment: ", resultInt);
+                console.log("ADM: ", resultADM);
+            } 
+            
             if (resultInt === true && resultADM === false) {
                 
                 // Tag GA4
@@ -115,9 +127,13 @@
                     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
                 })(window,document,'script','dataLayer','GTM-57JHV98X');
 
-                console.log("Index.html: GA4 e GTM habilitados para essa sessão!");
+                if(sessionStorage.getItem("statusConsole") === 'true') {
+                    console.log("Index.html: GA4 e GTM habilitados para essa sessão!");
+                } 
             } else {
-                console.log("Index.html: Ambiente de testes ou ADM em produção, não habilitar TAGS Google!")
+                if(sessionStorage.getItem("statusConsole") === 'true') {
+                    console.log("Index.html: Ambiente de testes ou ADM em produção, não habilitar TAGS Google!")
+                } 
             }
         </script>
 
@@ -143,12 +159,15 @@
             let baseTag = document.createElement('base');
             baseTag.href = baseURL;
             document.head.prepend(baseTag);
-            console.log(`Base href definido como: ${baseURL}`)
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log(`Base href definido como: ${baseURL}`)
+            }
             
             // Montando Domínio
             sessionStorage.setItem("currentDomain", `${window.location.origin}${baseURL}`)
-            console.log("Current Domain: ", sessionStorage.getItem("currentDomain"))
-            
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log("Current Domain: ", sessionStorage.getItem("currentDomain"))
+            }
         </script>
 
         <meta
@@ -198,8 +217,13 @@
                 document.body.prepend(noScript)
 
                 console.log("Index.html: Iframe GTM ativo!!!")
+                if(sessionStorage.getItem("statusConsole") === 'true') {
+                    console.log("Index.html: Iframe GTM ativo!!!")
+                }
             } else {
-                console.log("Index.html: Iframe noscript GTM desativado!")
+                if(sessionStorage.getItem("statusConsole") === 'true') {
+                    console.log("Index.html: Iframe noscript GTM desativado!")
+                }
             }
         </script>
 

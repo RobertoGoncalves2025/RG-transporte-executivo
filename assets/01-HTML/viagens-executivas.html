@@ -9,7 +9,11 @@
             const intlocalEnvironment = parseInt(islocalEnvironment)
             const resultInt = (intlocalEnvironment === 1)
             const resultADM = (statusADM === 'true');
-            console.log(resultInt, resultADM);
+            
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log("Environment: ", resultInt);
+                console.log("ADM: ", resultADM);
+            } 
 
             if (resultInt === true && resultADM === false) {
                 
@@ -39,9 +43,14 @@
                     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
                 })(window,document,'script','dataLayer','GTM-57JHV98X');
 
-                console.log("viagens-executivas.html: GA4 e GTM habilitados para essa sessão!");
+                
+                if(sessionStorage.getItem("statusConsole") === 'true') {
+                    console.log("viagens-executivas.html: GA4 e GTM habilitados para essa sessão!");
+                } 
             } else {
-                console.log("viagens-executivas.html: Ambiente de testes ou ADM em produção, não habilitar TAGS Google!")
+                if(sessionStorage.getItem("statusConsole") === 'true') {
+                    console.log("viagens-executivas.html: Ambiente de testes ou ADM em produção, não habilitar TAGS Google!")
+                }
             }
         </script>
 
@@ -75,7 +84,10 @@
                 linkElement.href = "/RG-transporte-executivo/assets/02-CSS/05-viagens/0-viagens-executivas.css";
             }
             document.head.appendChild(linkElement);
-            console.log("LinkElement: ", linkElement)
+            
+            if(sessionStorage.getItem("statusConsole") === 'true') {
+                console.log("LinkElement: ", linkElement)
+            }
         </script>
 
         <link rel="stylesheet" 
@@ -105,9 +117,13 @@
                 noScript.appendChild(eliframe)
                 document.body.prepend(noScript)
 
-                console.log("viagens-executivas.html: Iframe GTM ativo!!!")
+                if(sessionStorage.getItem("statusConsole") === 'true') {
+                    console.log("viagens-executivas.html: Iframe GTM ativo!!!")
+                }
             } else {
-                console.log("viagens-executivas.html: Iframe noscript GTM desativado!")
+                if(sessionStorage.getItem("statusConsole") === 'true') {
+                    console.log("viagens-executivas.html: Iframe noscript GTM desativado!")
+                }
             }
         </script>
         
@@ -224,11 +240,15 @@
                     //Enviando sinal para origem
                     parentOrigins.forEach(origin => {
                         window.parent.postMessage('iframeContentReady', origin); 
-                        console.log(`%cTentando enviar 'iframeContentReady' para origem: ${origin}`, "color: gray;");
+                        if(sessionStorage.getItem("statusConsole") === 'true') {
+                            console.log(`%cTentando enviar 'iframeContentReady' para origem: ${origin}`, "color: gray;");
+                        }
                     })
 
                     // Status
-                    console.log("%cNotificação 'iframeContentReady' enviada para o pai (verifique o console do pai para confirmação).", "color: blue;");
+                    if(sessionStorage.getItem("statusConsole") === 'true') {
+                        console.log("%cNotificação 'iframeContentReady' enviada para o pai (verifique o console do pai para confirmação).", "color: blue;");
+                    }
                 }
             }
             window.addEventListener('load', notifyParentIframeReady);
